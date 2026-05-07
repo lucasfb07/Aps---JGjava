@@ -32,7 +32,10 @@ public class Jogo {
                 "Qual é o seu nome, ativista?",
                 "Criar Personagem", JOptionPane.PLAIN_MESSAGE);
 
-        if (nome == null || nome.trim().isEmpty()) nome = "Ativista";
+        if (nome == null) {
+            System.exit(0); //se o jogador fechar o jogo encerra
+        }
+        if    (nome.trim().isEmpty()) nome = "Ativista";
         jogador = new Membro(nome);
 
         // Introdução
@@ -88,8 +91,11 @@ public class Jogo {
 
         if (escolha == 0) {
             CaminhoA.executar(jogador, inventario);
-        } else {
+        } else if (escolha == 1) {
             CaminhoB.executar(jogador, inventario);
+        } else {
+            JOptionPane.showMessageDialog(null, "Você abandonou a missão e tudo foi perdido");
+            System.exit(0);
         }
     }
 }

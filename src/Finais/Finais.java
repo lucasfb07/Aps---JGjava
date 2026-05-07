@@ -35,9 +35,9 @@ public class Finais {
                 JOptionPane.PLAIN_MESSAGE, null, opcoes, opcoes[0]);
 
         if (escolha == 0) {
-            gameOverPreso();
+            FinalAcordo();
         } else {
-            gameOverPreso();
+            FinalSilencioso();
         }
         // (A2 ainda pode ser expandido pelo grupo)
     }
@@ -63,7 +63,7 @@ public class Finais {
 
     public static void finalBom(Membro jogador) {
         JOptionPane.showMessageDialog(null,
-                        //"FINAL BOM\n\n" +
+                        //"FINAL Onde tudo da certo\n\n" +
                         "O Ministério Público abriu investigação.\n" +
                         "A obra foi embargada.\n" +
                         "A área preservada continua de pé.\n\n" +
@@ -73,7 +73,7 @@ public class Finais {
 
     public static void finalNeutro() {
         JOptionPane.showMessageDialog(null,
-                        //"FINAL NEUTRO\n\n" +
+                        //"FINAL onde nao piora e nem melhora\n\n" +
                         "O vídeo viralizou em 2 horas.\n" +
                         "A Vertex parou as obras por pressão popular.\n" +
                         "Mas sem processo jurídico, podem recomeçar em qualquer momento.\n\n" +
@@ -83,12 +83,41 @@ public class Finais {
 
     public static void finalMau() {
         JOptionPane.showMessageDialog(null,
-                        //"FINAL MAU\n\n" +
+                        //"Onde tudo da errado\n\n" +
                         "A Vertex pagou para você se calar.\n" +
                         "O shopping foi construído.\n" +
                         "A área preservada não existe mais.\n\n" +
                         "Você tem dinheiro. E uma consciência pesada.",
                 "FIM — Derrota", JOptionPane.WARNING_MESSAGE);
+    }
+
+    public static void FinalAcordo() {
+        JOptionPane.showMessageDialog(null,
+                //voce se livrou da prisao, porem tudo pelo que lutou foi perdido
+                "Você aceitou o acordo.\n\n" +
+                "Em troca da sua liberdade, revelou informações sobre\n" +
+                "as estratégias internas da ONG.\n\n" +
+                "A Vertex usou isso para desacreditar o grupo publicamente.\n" +
+                "Você saiu livre, mas a organização ficou enfraquecida.\n\n" +
+                "A obra foi aprovada. A área preservada foi destruída.\n\n" +
+                "Você está livre. Mas sozinho.",
+                "FIM", JOptionPane.WARNING_MESSAGE);
+
+
+
+    }
+
+    public static void FinalSilencioso() {
+        JOptionPane.showMessageDialog(null,
+            //final nao preso porem ainda na luta
+                "Você não disse uma palavra.\n\n" +
+                        "Enquanto estava detido, sua ONG acionou contatos jurídicos\n" +
+                        "e vazou o caso para a imprensa.\n\n" +
+                        "A repercussão foi grande o suficiente para forçar sua soltura.\n" +
+                        "Você saiu sem provas, mas sem trair ninguém.\n\n" +
+                        "A batalha pela área preservada ainda não acabou.\n\n" +
+                        "Às vezes resistir já é uma vitória.",
+                "FIM", JOptionPane.PLAIN_MESSAGE);
     }
 
     public static void gameOverFraude() {
