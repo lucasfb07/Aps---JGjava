@@ -1,12 +1,44 @@
 package Caminhos;
 
 import javax.swing.JOptionPane;
+
+import Jogo.Teste;
 import Personagem.Membro;
 import Jogo.Inventario;
 
 public class CaminhoA {
 
     public static void executar(Membro jogador, Inventario inventario) {
+
+        //oferecer item
+        String[] opcaoItem = {"Pegar o Rádio Comunicador", "Entrar sem equipamento"};
+        int pegaItem = JOptionPane.showOptionDialog(null,
+                "Seu colega da ONG te oferece um Rádio Comunicador.\n" +
+                        "Ele pode te ajudar a coordenar a entrada.\n\n" +
+                        "Você pega?",
+                "Item disponível", JOptionPane.DEFAULT_OPTION,
+                JOptionPane.PLAIN_MESSAGE, null, opcaoItem, opcaoItem[0]);
+
+        if (pegaItem == 0) {
+            inventario.adicionarItem("Rádio Comunicador", jogador);
+            JOptionPane.showMessageDialog(null,
+                    "Rádio Comunicador adicionado!\n" + jogador.getStatus(),
+                    "Item obtido", JOptionPane.PLAIN_MESSAGE);
+        }
+
+        // Teste de furtividade para entrar
+        boolean entrou = Teste.realizarTesteComRisco(
+                jogador,
+                6,// dificuldade 6/10
+                "Entrar furtivamente no prédio",
+                25// perde 25 de vida se falhar
+        );
+
+        if (entrou) {
+            sucessoNaInvasao(jogador, inventario);
+        } else {
+            fracassoNaInvasao(jogador);
+        }
 
         JOptionPane.showMessageDialog(null,
                 "INVASÃO FÍSICA\n\n" +

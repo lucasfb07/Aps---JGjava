@@ -1,9 +1,11 @@
 package Jogo;
 
-import javax.swing.JOptionPane;
+import javax.swing.*;
+
 import Personagem.Membro;
 import Caminhos.CaminhoA;
 import Caminhos.CaminhoB;
+
 
 public class Jogo {
 

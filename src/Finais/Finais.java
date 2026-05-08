@@ -138,4 +138,14 @@ public class Finais {
                         "A Vertex continuou tudo como planejado.",
                 "GAME OVER", JOptionPane.ERROR_MESSAGE);
     }
+
+    public static void gameOverVidaZero() {
+        JOptionPane.showMessageDialog(null,
+                "GAME OVER\n\n" +
+                        "Seus ferimentos foram graves demais.\n" +
+                        "Você não conseguiu continuar a missão.\n\n" +
+                        "A área preservada foi destruída.",
+                "GAME OVER — Esgotado", JOptionPane.ERROR_MESSAGE);
+        System.exit(0);
+    }
 }
