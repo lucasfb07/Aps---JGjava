@@ -13,7 +13,7 @@ public class Teste {
         int resultado = dado + jogador.getBonusItem();
 
         JOptionPane.showMessageDialog(null,
-                "🎲 TESTE: " + descricao + "\n\n" +
+                " TESTE: " + descricao + "\n\n" +
                         jogador.getStatus() + "\n\n" +
                         "Dado: " + dado + "  +  Bônus: " + jogador.getBonusItem() +
                         "  =  " + resultado + "\n" +
