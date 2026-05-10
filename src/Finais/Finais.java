@@ -1,6 +1,8 @@
 package Finais;
 
 import javax.swing.JOptionPane;
+
+import Jogo.AcaoItem;
 import Personagem.Membro;
 import Jogo.Inventario;
 
@@ -8,6 +10,8 @@ public class Finais {
 
     // CAMINHO A1 — tem provas reais
     public static void caminhoA1(Membro jogador, Inventario inventario) {
+
+        AcaoItem.oferecerUsoKitMedico(jogador, inventario);
 
         String[] opcoes = {"Entregar ao Ministério Público", "Vazar nas redes sociais"};
         int escolha = JOptionPane.showOptionDialog(null,
@@ -23,8 +27,17 @@ public class Finais {
         }
     }
 
-    // CAMINHO A2 — foi preso
+    // Compatibilidade com chamadas antigas
     public static void caminhoA2(Membro jogador) {
+        caminhoA2(jogador, null);
+    }
+
+    // CAMINHO A2 — foi preso
+    public static void caminhoA2(Membro jogador, Inventario inventario) {
+
+        if (inventario != null) {
+            AcaoItem.oferecerUsoKitMedico(jogador, inventario);
+        }
 
         String[] opcoes = {"Fazer acordo de delação", "Ficar em silêncio"};
         int escolha = JOptionPane.showOptionDialog(null,
@@ -39,11 +52,12 @@ public class Finais {
         } else {
             FinalSilencioso();
         }
-        // (A2 ainda pode ser expandido pelo grupo)
     }
 
     // CAMINHO B2 — documentos falsos não descobertos
     public static void caminhoB2(Membro jogador, Inventario inventario) {
+
+        AcaoItem.oferecerUsoKitMedico(jogador, inventario);
 
         String[] opcoes = {"Chantagear a Vertex", "Vazar os documentos"};
         int escolha = JOptionPane.showOptionDialog(null,
@@ -59,11 +73,9 @@ public class Finais {
         }
     }
 
-    // ── OS FINAIS ──
-
     public static void finalBom(Membro jogador) {
         JOptionPane.showMessageDialog(null,
-                        //"FINAL Onde tudo da certo\n\n" +
+                "FINAL BOM\n\n" +
                         "O Ministério Público abriu investigação.\n" +
                         "A obra foi embargada.\n" +
                         "A área preservada continua de pé.\n\n" +
@@ -73,7 +85,7 @@ public class Finais {
 
     public static void finalNeutro() {
         JOptionPane.showMessageDialog(null,
-                        //"FINAL onde nao piora e nem melhora\n\n" +
+                "FINAL NEUTRO\n\n" +
                         "O vídeo viralizou em 2 horas.\n" +
                         "A Vertex parou as obras por pressão popular.\n" +
                         "Mas sem processo jurídico, podem recomeçar em qualquer momento.\n\n" +
@@ -83,7 +95,7 @@ public class Finais {
 
     public static void finalMau() {
         JOptionPane.showMessageDialog(null,
-                        //"Onde tudo da errado\n\n" +
+                "FINAL MAU\n\n" +
                         "A Vertex pagou para você se calar.\n" +
                         "O shopping foi construído.\n" +
                         "A área preservada não existe mais.\n\n" +
@@ -93,23 +105,18 @@ public class Finais {
 
     public static void FinalAcordo() {
         JOptionPane.showMessageDialog(null,
-                //voce se livrou da prisao, porem tudo pelo que lutou foi perdido
                 "Você aceitou o acordo.\n\n" +
-                "Em troca da sua liberdade, revelou informações sobre\n" +
-                "as estratégias internas da ONG.\n\n" +
-                "A Vertex usou isso para desacreditar o grupo publicamente.\n" +
-                "Você saiu livre, mas a organização ficou enfraquecida.\n\n" +
-                "A obra foi aprovada. A área preservada foi destruída.\n\n" +
-                "Você está livre. Mas sozinho.",
+                        "Em troca da sua liberdade, revelou informações sobre\n" +
+                        "as estratégias internas da ONG.\n\n" +
+                        "A Vertex usou isso para desacreditar o grupo publicamente.\n" +
+                        "Você saiu livre, mas a organização ficou enfraquecida.\n\n" +
+                        "A obra foi aprovada. A área preservada foi destruída.\n\n" +
+                        "Você está livre. Mas sozinho.",
                 "FIM", JOptionPane.WARNING_MESSAGE);
-
-
-
     }
 
     public static void FinalSilencioso() {
         JOptionPane.showMessageDialog(null,
-            //final nao preso porem ainda na luta
                 "Você não disse uma palavra.\n\n" +
                         "Enquanto estava detido, sua ONG acionou contatos jurídicos\n" +
                         "e vazou o caso para a imprensa.\n\n" +
