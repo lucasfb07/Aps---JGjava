@@ -1,13 +1,12 @@
 package Jogo;
 
 import Personagem.Membro;
-
 import javax.swing.*;
 import java.util.ArrayList;
 
 public class Inventario {
 
-    // Atributo Estático / Atributo Final
+    // (Atributo Estático Final)
     public static final String RADIO_COMUNICADOR = "Rádio Comunicador";
     public static final String CREDENCIAL_FALSA  = "Credencial Falsa";
     public static final String PENDRIVE_HACKER   = "Pendrive Hacker";
@@ -16,7 +15,7 @@ public class Inventario {
     public static final String RELATORIO_REAL    = "Relatório Real da Vertex";
     public static final String DOCUMENTOS_FALSOS = "Documentos Falsificados";
 
-    // Encapsulamento
+    // (Encapsulamento)
     private ArrayList<String> itens;
 
     // Método Construtor
@@ -24,68 +23,74 @@ public class Inventario {
         this.itens = new ArrayList<>();
     }
 
+    // Sobrecarga — versão sem jogador usada para itens narrativos
+    // como RELATORIO_REAL e DOCUMENTOS_FALSOS, que não geram
+    // efeito imediato de atributo e não exibem caixinha de feedback.
+    // O item é apenas registrado no inventário para uso futuro nos Finais.
     public void adicionarItem(String item, Membro jogador) {
         itens.add(item);
 
-        String descricao = "";
-        String efeito = "";
+        String descricao;
+        String efeito;
 
         switch (item) {
+
             case RADIO_COMUNICADOR:
-                jogador.aumentarBonusItem(2);
+                jogador.addBonusFurtividade(2);
                 descricao = "Aparelho de comunicação com sua equipe da ONG.";
-                efeito = "+2 nos testes gerais durante a missão.";
+                efeito    = "+2 nos testes de furtividade.";
                 break;
 
             case CREDENCIAL_FALSA:
-                jogador.aumentarBonusItem(3);
+                jogador.addBonusArgumentacao(3);
                 descricao = "Crachá com identidade forjada de funcionário da Vertex.";
-                efeito = "+3 nos testes de entrada e diálogo.";
+                efeito    = "+3 nos testes de entrada e diálogo.";
                 break;
 
             case PENDRIVE_HACKER:
-                jogador.aumentarBonusItem(3);
+                jogador.addBonusInteligencia(3);
                 descricao = "Dispositivo com ferramentas de invasão digital da ONG.";
-                efeito = "+3 nos testes digitais.";
+                efeito    = "+3 nos testes digitais.";
                 break;
 
             case GRAVADOR:
-                jogador.aumentarBonusItem(2);
+                jogador.addBonusEvidencia(2);
                 descricao = "Gravador de áudio disfarçado de caneta.";
-                efeito = "+2 nos testes para obter evidências.";
+                efeito    = "+2 nos testes para obter evidências.";
                 break;
 
             case KIT_MEDICO:
+                // Kit Médico não dá bônus — é usado via AcaoItem
                 descricao = "Kit de primeiros socorros preparado pela ONG.";
-                efeito = "Pode ser usado antes de escolhas importantes para recuperar vida, mas reduz 1 atributo.";
+                efeito    = "Use antes de escolhas importantes para recuperar 30 de vida.";
                 break;
 
             case RELATORIO_REAL:
                 descricao = "Documento verdadeiro escondido pela Vertex.";
-                efeito = "Desbloqueia decisões com provas reais.";
+                efeito    = "Desbloqueia decisões com provas reais.";
                 break;
 
             case DOCUMENTOS_FALSOS:
                 descricao = "Documentos falsificados contra a Vertex.";
-                efeito = "Pode incriminar a empresa, mas existe risco de perícia descobrir a fraude.";
+                efeito    = "Pode incriminar a empresa, mas existe risco de a perícia descobrir a fraude.";
                 break;
 
             default:
                 descricao = "Item registrado no inventário.";
-                efeito = "Efeito definido pela história.";
+                efeito    = "Efeito definido pela história.";
                 break;
         }
 
         JOptionPane.showMessageDialog(null,
                 "ITEM OBTIDO\n\n" +
-                        item + "\n\n" +
+                        "" + item + "\n\n" +
                         descricao + "\n\n" +
                         "Efeito: " + efeito + "\n\n" +
                         jogador.getStatus(),
                 "Novo Item", JOptionPane.PLAIN_MESSAGE);
     }
 
-    // Sobrecarga - versão sem jogador para itens sem efeito imediato
+    // (Sobrecarga)
     public void adicionarItem(String item) {
         itens.add(item);
     }

@@ -8,6 +8,8 @@ import Jogo.Inventario;
 
 public class Finais {
 
+    private static Membro jogador;
+
     // CAMINHO A1 — tem provas reais
     public static void caminhoA1(Membro jogador, Inventario inventario) {
 
@@ -15,8 +17,10 @@ public class Finais {
 
         String[] opcoes = {"Entregar ao Ministério Público", "Vazar nas redes sociais"};
         int escolha = JOptionPane.showOptionDialog(null,
-                "Você tem o Relatório Real da Vertex.\n\n" +
-                        "O que você vai fazer com ele?",
+                """
+                        Você tem o Relatório Real da Vertex.
+                        
+                        O que você vai fazer com ele?""",
                 "O que fazer?", JOptionPane.DEFAULT_OPTION,
                 JOptionPane.PLAIN_MESSAGE, null, opcoes, opcoes[0]);
 
@@ -25,11 +29,6 @@ public class Finais {
         } else {
             finalNeutro();
         }
-    }
-
-    // Compatibilidade com chamadas antigas
-    public static void caminhoA2(Membro jogador) {
-        caminhoA2(jogador, null);
     }
 
     // CAMINHO A2 — foi preso
@@ -41,9 +40,11 @@ public class Finais {
 
         String[] opcoes = {"Fazer acordo de delação", "Ficar em silêncio"};
         int escolha = JOptionPane.showOptionDialog(null,
-                "Você está detido na sede da Vertex.\n\n" +
-                        "Um advogado da empresa entra na sala.\n" +
-                        "O que você faz?",
+                """
+                        Você está detido na sede da Vertex.
+                        
+                        Um advogado da empresa entra na sala.
+                        O que você faz?""",
                 "Preso", JOptionPane.DEFAULT_OPTION,
                 JOptionPane.PLAIN_MESSAGE, null, opcoes, opcoes[0]);
 
@@ -61,8 +62,10 @@ public class Finais {
 
         String[] opcoes = {"Chantagear a Vertex", "Vazar os documentos"};
         int escolha = JOptionPane.showOptionDialog(null,
-                "Você tem documentos falsos que podem incriminar a Vertex.\n\n" +
-                        "O que você vai fazer?",
+                """
+                        Você tem documentos falsos que podem incriminar a Vertex.
+                        
+                        O que você vai fazer?""",
                 "Decisão", JOptionPane.DEFAULT_OPTION,
                 JOptionPane.PLAIN_MESSAGE, null, opcoes, opcoes[0]);
 
@@ -74,85 +77,112 @@ public class Finais {
     }
 
     public static void finalBom(Membro jogador) {
+        Finais.jogador = jogador;
         JOptionPane.showMessageDialog(null,
-                "FINAL BOM\n\n" +
-                        "O Ministério Público abriu investigação.\n" +
-                        "A obra foi embargada.\n" +
-                        "A área preservada continua de pé.\n\n" +
-                        "Você não ficou rico. Mas fez a coisa certa.",
-                "FIM — Vitória", JOptionPane.PLAIN_MESSAGE);
+                """
+
+                        O Ministério Público abriu investigação.
+                        A obra foi embargada.
+                        A área preservada continua de pé.
+                        
+                        Você não ficou rico. Mas fez a coisa certa.""",
+                "FIM", JOptionPane.PLAIN_MESSAGE);
+
+        System.exit(0);
+
     }
 
     public static void finalNeutro() {
         JOptionPane.showMessageDialog(null,
-                "FINAL NEUTRO\n\n" +
-                        "O vídeo viralizou em 2 horas.\n" +
-                        "A Vertex parou as obras por pressão popular.\n" +
-                        "Mas sem processo jurídico, podem recomeçar em qualquer momento.\n\n" +
-                        "A luta continua.",
-                "FIM — Neutro", JOptionPane.PLAIN_MESSAGE);
+                """
+                        O vídeo viralizou em 2 horas.
+                        A Vertex parou as obras por pressão popular.
+                        Mas sem processo jurídico, podem recomeçar em qualquer momento.
+                        
+                        A luta continua.""",
+                "FIM", JOptionPane.PLAIN_MESSAGE);
+        System.exit(0);
+
     }
 
     public static void finalMau() {
         JOptionPane.showMessageDialog(null,
-                "FINAL MAU\n\n" +
-                        "A Vertex pagou para você se calar.\n" +
-                        "O shopping foi construído.\n" +
-                        "A área preservada não existe mais.\n\n" +
-                        "Você tem dinheiro. E uma consciência pesada.",
-                "FIM — Derrota", JOptionPane.WARNING_MESSAGE);
+                """
+                        
+                        A Vertex pagou para você se calar.
+                        O shopping foi construído.
+                        A área preservada não existe mais.
+                        
+                        Você tem dinheiro. E uma consciência pesada.""",
+                "FIM", JOptionPane.WARNING_MESSAGE);
+        System.exit(0);
+
     }
 
     public static void FinalAcordo() {
         JOptionPane.showMessageDialog(null,
-                "Você aceitou o acordo.\n\n" +
-                        "Em troca da sua liberdade, revelou informações sobre\n" +
-                        "as estratégias internas da ONG.\n\n" +
-                        "A Vertex usou isso para desacreditar o grupo publicamente.\n" +
-                        "Você saiu livre, mas a organização ficou enfraquecida.\n\n" +
-                        "A obra foi aprovada. A área preservada foi destruída.\n\n" +
-                        "Você está livre. Mas sozinho.",
+                """
+                        Você aceitou o acordo.
+                        
+                        Em troca da sua liberdade, revelou informações sobre
+                        as estratégias internas da ONG.
+                        
+                        A Vertex usou isso para desacreditar o grupo publicamente.
+                        Você saiu livre, mas a organização ficou enfraquecida.
+                        
+                        A obra foi aprovada. A área preservada foi destruída.
+                        
+                        Você está livre. Mas sozinho.""",
                 "FIM", JOptionPane.WARNING_MESSAGE);
+        System.exit(0);
+
     }
 
     public static void FinalSilencioso() {
         JOptionPane.showMessageDialog(null,
-                "Você não disse uma palavra.\n\n" +
-                        "Enquanto estava detido, sua ONG acionou contatos jurídicos\n" +
-                        "e vazou o caso para a imprensa.\n\n" +
-                        "A repercussão foi grande o suficiente para forçar sua soltura.\n" +
-                        "Você saiu sem provas, mas sem trair ninguém.\n\n" +
-                        "A batalha pela área preservada ainda não acabou.\n\n" +
-                        "Às vezes resistir já é uma vitória.",
+                """
+                        Você não disse uma palavra.
+                        
+                        Enquanto estava detido, sua ONG acionou contatos jurídicos
+                        e vazou o caso para a imprensa.
+                        
+                        A repercussão foi grande o suficiente para forçar sua soltura.
+                        Você saiu sem provas, mas sem trair ninguém.
+                        
+                        A batalha pela área preservada ainda não acabou.
+                        
+                        Às vezes resistir já é uma vitória.""",
                 "FIM", JOptionPane.PLAIN_MESSAGE);
+        System.exit(0);
+
     }
 
     public static void gameOverFraude() {
         JOptionPane.showMessageDialog(null,
-                "GAME OVER\n\n" +
-                        "A fraude foi descoberta.\n" +
-                        "Você responde por falsidade ideológica.\n" +
-                        "A Vertex saiu ilesa.\n" +
-                        "A área foi destruída.",
-                "GAME OVER", JOptionPane.ERROR_MESSAGE);
-    }
+                """
+                        GAME OVER
+                        
+                        A fraude foi descoberta.
+                        Você responde por falsidade ideológica.
+                        A Vertex saiu ilesa.
+                        A área foi destruída.""",
+                "Fim", JOptionPane.ERROR_MESSAGE);
+        System.exit(0);
 
-    public static void gameOverPreso() {
-        JOptionPane.showMessageDialog(null,
-                "GAME OVER\n\n" +
-                        "Você foi preso em flagrante.\n" +
-                        "Sem as provas, ninguém acredita em você.\n" +
-                        "A Vertex continuou tudo como planejado.",
-                "GAME OVER", JOptionPane.ERROR_MESSAGE);
     }
 
     public static void gameOverVidaZero() {
         JOptionPane.showMessageDialog(null,
-                "GAME OVER\n\n" +
-                        "Seus ferimentos foram graves demais.\n" +
-                        "Você não conseguiu continuar a missão.\n\n" +
-                        "A área preservada foi destruída.",
-                "GAME OVER — Esgotado", JOptionPane.ERROR_MESSAGE);
+                """           
+                        Seus ferimentos foram graves demais.
+                        Você não conseguiu continuar a missão.
+                        
+                        A área preservada foi destruída.""",
+                "Fim", JOptionPane.ERROR_MESSAGE);
         System.exit(0);
+    }
+
+    public static void setJogador(Membro jogador) {
+        Finais.jogador = jogador;
     }
 }

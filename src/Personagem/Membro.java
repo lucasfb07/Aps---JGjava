@@ -2,18 +2,23 @@ package Personagem;
 
 import javax.swing.JOptionPane;
 
-// Herança
+// (Herança)
 public class Membro extends Personagem {
 
-    // Encapsulamento
+    // (Encapsulamento)
     private boolean temProvasReais;
     private boolean temProvasFalsas;
     private boolean foiPreso;
 
     private int vida;
-    private int bonusItem;
 
-    // Atributos de RPG
+    // Bônus de itens
+    private int bonusFurtividade;
+    private int bonusInteligencia;
+    private int bonusArgumentacao;
+    private int bonusEvidencia;
+
+    // Atributos base do personagem
     private int furtividade;
     private int inteligencia;
     private int argumentacao;
@@ -21,17 +26,20 @@ public class Membro extends Personagem {
     // Método Construtor
     public Membro(String nome) {
         super(nome, 100, 50);
-        this.temProvasReais = false;
+        this.temProvasReais  = false;
         this.temProvasFalsas = false;
-        this.foiPreso = false;
-        this.vida = 100;
-        this.bonusItem = 0;
-        this.furtividade = 0;
-        this.inteligencia = 0;
-        this.argumentacao = 0;
+        this.foiPreso        = false;
+        this.vida            = 100;
+        this.furtividade     = 0;
+        this.inteligencia    = 0;
+        this.argumentacao    = 0;
+        this.bonusFurtividade  = 0;
+        this.bonusInteligencia = 0;
+        this.bonusArgumentacao = 0;
+        this.bonusEvidencia    = 0;
     }
 
-    // Sobrescrita
+    // (Sobrescrita)
     @Override
     public void agir() {
         JOptionPane.showMessageDialog(null,
@@ -39,11 +47,12 @@ public class Membro extends Personagem {
                 "Ação", JOptionPane.PLAIN_MESSAGE);
     }
 
+    // Vida
     public boolean receberDano(int dano) {
         this.vida -= dano;
         if (this.vida <= 0) {
             this.vida = 0;
-            return true;
+            return true; // morreu
         }
         return false;
     }
@@ -52,10 +61,9 @@ public class Membro extends Personagem {
         this.vida = Math.min(100, this.vida + quantidade);
     }
 
-    public void aumentarBonusItem(int valor) {
-        this.bonusItem += valor;
-    }
+    public int getVida() { return vida; }
 
+    // Redutores de atributo base
     public void reduzirFurtividade(int valor) {
         this.furtividade = Math.max(0, this.furtividade - valor);
     }
@@ -68,52 +76,51 @@ public class Membro extends Personagem {
         this.argumentacao = Math.max(0, this.argumentacao - valor);
     }
 
+    // Status exibido nas caixinhas
     public String getStatus() {
-        return "Nome: " + getNome() +
-                "\nVida: " + vida + "/100" +
-                "\nBônus de item: +" + bonusItem +
-                "\nReputação: " + getReputacao() +
-                "\n\nAtributos:" +
-                "\nFurtividade: " + furtividade +
-                "\nInteligência: " + inteligencia +
-                "\nArgumentação: " + argumentacao;
+        return " " + getNome() +
+                "\n Vida: " + vida + "/100" +
+                "\n Reputação: " + getReputacao() +
+                "\n\n Atributos base:" +
+                "\n  Furtividade:  " + furtividade +
+                "\n  Inteligência: " + inteligencia +
+                "\n  Argumentação: " + argumentacao +
+                "\n\n Bônus de itens:" +
+                "\n  Furtividade:  +" + bonusFurtividade +
+                "\n  Inteligência: +" + bonusInteligencia +
+                "\n  Argumentação: +" + bonusArgumentacao +
+                "\n  Evidência:    +" + bonusEvidencia;
     }
 
-    public String getAtributos() {
-        return "Furtividade: " + furtividade +
-                "\nInteligência: " + inteligencia +
-                "\nArgumentação: " + argumentacao;
-    }
-
-    public int getVida() { return vida; }
-
-    public void setVida(int vida) {
-        if (vida < 0) {
-            this.vida = 0;
-        } else if (vida > 100) {
-            this.vida = 100;
-        } else {
-            this.vida = vida;
-        }
-    }
-
-    public int getBonusItem() { return bonusItem; }
-    public void setBonusItem(int bonus) { this.bonusItem = bonus; }
-
-    public boolean isTemProvasReais() { return temProvasReais; }
-    public boolean isTemProvasFalsas() { return temProvasFalsas; }
-    public boolean isFoiPreso() { return foiPreso; }
-
-    public void setTemProvasReais(boolean v) { this.temProvasReais = v; }
-    public void setTemProvasFalsas(boolean v) { this.temProvasFalsas = v; }
-    public void setFoiPreso(boolean v) { this.foiPreso = v; }
-
-    public int getFurtividade() { return furtividade; }
-    public void setFurtividade(int furtividade) { this.furtividade = furtividade; }
-
+    // Getters e Setters — atributos base
+    public int getFurtividade()  { return furtividade; }
     public int getInteligencia() { return inteligencia; }
-    public void setInteligencia(int inteligencia) { this.inteligencia = inteligencia; }
-
     public int getArgumentacao() { return argumentacao; }
-    public void setArgumentacao(int argumentacao) { this.argumentacao = argumentacao; }
+
+    // Getters e Setters — bônus de itens
+    public int getBonusFurtividade()  { return bonusFurtividade; }
+    public int getBonusInteligencia() { return bonusInteligencia; }
+    public int getBonusArgumentacao() { return bonusArgumentacao; }
+    public int getBonusEvidencia()    { return bonusEvidencia; }
+
+    public void addBonusFurtividade(int v)  { this.bonusFurtividade  += v; }
+    public void addBonusInteligencia(int v) { this.bonusInteligencia += v; }
+    public void addBonusArgumentacao(int v) { this.bonusArgumentacao += v; }
+    public void addBonusEvidencia(int v)    { this.bonusEvidencia    += v; }
+
+    public void setTemProvasReais(boolean v)  { this.temProvasReais  = v; }
+    public void setTemProvasFalsas(boolean v) { this.temProvasFalsas = v; }
+    public void setFoiPreso(boolean v)        { this.foiPreso        = v; }
+
+    public boolean isTemProvasReais() {
+        return temProvasReais;
+    }
+
+    public boolean isTemProvasFalsas() {
+        return temProvasFalsas;
+    }
+
+    public boolean isFoiPreso() {
+        return foiPreso;
+    }
 }

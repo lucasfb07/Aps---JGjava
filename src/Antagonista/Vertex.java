@@ -3,19 +3,21 @@ package Antagonista;
 public final class Vertex {
 
     // Atributo Estático
-    private static final String NOME_EMPRESA = "Vertex Corp";
 
     private final int nivelSeguranca;
-    private boolean obraRealizada;
 
     // METODO CONSTRUTOR
     public Vertex() {
         this.nivelSeguranca = 80;
-        this.obraRealizada = false;
     }
 
-    public String getNome() { return NOME_EMPRESA; }
-    public int getNivelSeguranca() { return nivelSeguranca; }
-    public boolean isObraRealizada() { return obraRealizada; }
-    public void setObraRealizada(boolean v) { this.obraRealizada = v; }
+    // Retorna bônus de dificuldade baseado no nível de segurança
+    // Nível 80 = +2 de dificuldade em todos os testes
+    public int getBonusDificuldade() {
+        if (nivelSeguranca >= 90) return 3;
+        if (nivelSeguranca >= 70) return 2;
+        if (nivelSeguranca >= 50) return 1;
+        return 0;
+    }
+
 }

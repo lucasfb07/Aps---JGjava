@@ -3,7 +3,7 @@ package Personagem;
 public abstract class Personagem {
 
     // (Encapsulamento)
-    private String nome;
+    private final String nome;
     private int pontosDeVida;
     private int reputacao; // afeta qual final vai ter
 

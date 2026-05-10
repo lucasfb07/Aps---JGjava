@@ -58,8 +58,10 @@ public class AcaoItem {
 
         while (true) {
             int escolha = JOptionPane.showOptionDialog(null,
-                    "Usar o Kit Médico exige tempo e concentração.\n\n" +
-                            "Escolha qual atributo será reduzido em 1 ponto:",
+                    """
+                            Usar o Kit Médico exige tempo e concentração.
+                            
+                            Escolha qual atributo será reduzido em 1 ponto:""",
                     "Penalidade do Kit Médico",
                     JOptionPane.DEFAULT_OPTION,
                     JOptionPane.WARNING_MESSAGE,

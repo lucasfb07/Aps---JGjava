@@ -1,46 +1,65 @@
 package Jogo;
 
 import javax.swing.*;
-
+import Antagonista.Vertex;
 import Personagem.Membro;
 import Caminhos.CaminhoA;
 import Caminhos.CaminhoB;
 
-
 public class Jogo {
 
-    private Membro jogador;
-    private Inventario inventario;
+    private final Inventario inventario;
 
-    //  METODO CONSTRUTOR
+    // Método Construtor
     public Jogo() {
         this.inventario = new Inventario();
     }
 
+    public static void exibirStatusOpcional(Membro jogador, Inventario inventario) {
+
+        String[] opcoes = {"Continuar", "Ver meu status"};
+        int escolha = JOptionPane.showOptionDialog(null,
+                "Deseja continuar ou verificar seu status antes de prosseguir?",
+                "Pausa",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.PLAIN_MESSAGE,
+                null, opcoes, opcoes[0]);
+
+        if (escolha == 1) {
+            JOptionPane.showMessageDialog(null,
+                    "STATUS ATUAL\n\n" +
+                            jogador.getStatus() +
+                            "\n\nInventário:\n" + inventario.listarItens(),
+                    "Status do Personagem", JOptionPane.PLAIN_MESSAGE);
+
+            exibirStatusOpcional(jogador, inventario);
+        }
+    }
+
     public void iniciar() {
 
-        // Tela de início
         String[] botaoStart = {"START"};
         JOptionPane.showOptionDialog(null,
-                "BEM-VINDO AO JOGO\n\n" +
-                        "Uma área preservada está em risco.\n" +
-                        "A Vertex quer derrubá-la para construir um shopping.\n\n" +
-                        "Você faz parte da ONG que pode impedir isso.",
+                """
+                        BEM-VINDO AO JOGO
+                        
+                        Uma área preservada está em risco.
+                        A Vertex quer derrubá-la para construir um shopping.
+                        
+                        Você faz parte da ONG que pode impedir isso.""",
                 "A Última Hora", JOptionPane.DEFAULT_OPTION,
                 JOptionPane.PLAIN_MESSAGE, null, botaoStart, botaoStart[0]);
 
-        // Nome do jogador
         String nome = JOptionPane.showInputDialog(null,
                 "Qual é o seu nome, ativista?",
                 "Criar Personagem", JOptionPane.PLAIN_MESSAGE);
 
         if (nome == null) {
-            System.exit(0); //se o jogador fechar o jogo encerra
+            System.exit(0);
         }
-        if    (nome.trim().isEmpty()) nome = "Ativista";
-        jogador = new Membro(nome);
+        if (nome.trim().isEmpty()) nome = "Ativista";
+        Membro jogador = new Membro(nome);
 
-        // Introdução
         JOptionPane.showMessageDialog(null,
                 "Olá, " + jogador.getNome() + ".\n\n" +
                         "Você é membro de uma ONG dedicada à preservação da vida florestal.\n" +
@@ -49,39 +68,53 @@ public class Jogo {
                 "Introdução", JOptionPane.PLAIN_MESSAGE);
 
         JOptionPane.showMessageDialog(null,
-                "Essa área abriga árvores antigas, animais silvestres e nascentes naturais.\n" +
-                        "Além disso, ela ajuda a manter o equilíbrio ambiental da cidade.\n\n" +
-                        "Para muitas pessoas, esse lugar é mais do que uma floresta.\n" +
-                        "É um símbolo de resistência contra a destruição ambiental.",
+                """
+                        Essa área abriga árvores antigas, animais silvestres e nascentes naturais.
+                        Além disso, ela ajuda a manter o equilíbrio ambiental da cidade.
+                        
+                        Para muitas pessoas, esse lugar é mais do que uma floresta.
+                        É um símbolo de resistência contra a destruição ambiental.""",
                 "Área Preservada", JOptionPane.PLAIN_MESSAGE);
 
         JOptionPane.showMessageDialog(null,
-                "Mas tudo muda quando a empresa Vertex anuncia um novo projeto:\n" +
-                        "a construção de um shopping exatamente sobre a área preservada.\n\n" +
-                        "Segundo a empresa, todos os documentos ambientais foram aprovados.\n" +
-                        "Porém, sua ONG desconfia que há algo errado nessa autorização.",
+                """
+                        Mas tudo muda quando a empresa Vertex anuncia um novo projeto:
+                        a construção de um shopping exatamente sobre a área preservada.
+                        
+                        Segundo a empresa, todos os documentos ambientais foram aprovados.
+                        Porém, sua ONG desconfia que há algo errado nessa autorização.""",
                 "Vertex", JOptionPane.PLAIN_MESSAGE);
 
         JOptionPane.showMessageDialog(null,
-                "Depois de investigar, vocês descobrem a possível existência de um documento secreto:\n" +
-                        "o verdadeiro Relatório de Impacto Ambiental.\n\n" +
-                        "Esse relatório provaria que a Vertex sabe dos danos irreversíveis\n" +
-                        "que a obra pode causar, mas decidiu esconder a verdade.",
+                """
+                        Depois de investigar, vocês descobrem a possível existência de um documento secreto:
+                        o verdadeiro Relatório de Impacto Ambiental.
+                        
+                        Esse relatório provaria que a Vertex sabe dos danos irreversíveis
+                        que a obra pode causar, mas decidiu esconder a verdade.""",
                 "A Suspeita", JOptionPane.PLAIN_MESSAGE);
 
         JOptionPane.showMessageDialog(null,
-                "O problema é que sua ONG tem apoio de ativistas, contatos na mídia\n" +
-                        "e ajuda jurídica, mas não possui acesso interno à Vertex.\n\n" +
-                        "Sem provas, ninguém poderá impedir o início das obras.",
+                """
+                        O problema é que sua ONG tem apoio de ativistas, contatos na mídia
+                        e ajuda jurídica, mas não possui acesso interno à Vertex.
+                        
+                        Sem provas, ninguém poderá impedir o início das obras.""",
                 "O Problema", JOptionPane.PLAIN_MESSAGE);
 
         JOptionPane.showMessageDialog(null,
-                "Com o prazo se esgotando, você decide agir.\n\n" +
-                        "Existem dois caminhos possíveis:\n\n" +
-                        "Invadir a sede da Vertex e tentar encontrar as provas reais.\n" +
-                        "Ou criar documentos falsos para tentar incriminar a empresa.\n\n" +
-                        "Cada escolha terá consequências.",
+                """
+                        Com o prazo se esgotando, você decide agir.
+                        
+                        Existem dois caminhos possíveis:
+                        
+                        Invadir a sede da Vertex e tentar encontrar as provas reais.
+                        Ou criar documentos falsos para tentar incriminar a empresa.
+                        
+                        Cada escolha terá consequências.""",
                 "Sua Decisão", JOptionPane.WARNING_MESSAGE);
+
+        Vertex vertex = new Vertex();
 
         String[] caminhos = {"Invasão Física", "Fraude Digital"};
         int escolha = JOptionPane.showOptionDialog(null,
@@ -92,11 +125,17 @@ public class Jogo {
                 null, caminhos, caminhos[0]);
 
         if (escolha == 0) {
-            CaminhoA.executar(jogador, inventario);
+            CaminhoA.executar(jogador, inventario, vertex.getBonusDificuldade());
         } else if (escolha == 1) {
             CaminhoB.executar(jogador, inventario);
         } else {
-            JOptionPane.showMessageDialog(null, "Você abandonou a missão e tudo foi perdido");
+            JOptionPane.showMessageDialog(null,
+                    """
+                            Você hesitou tempo demais.
+                            
+                            Sem uma decisão, a Vertex avançou com as obras.
+                            A área preservada foi destruída.""",
+                    "Missão Abandonada", JOptionPane.WARNING_MESSAGE);
             System.exit(0);
         }
     }
