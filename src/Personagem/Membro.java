@@ -73,7 +73,6 @@ public class Membro extends Personagem {
                 "\n  Evidência:    +" + bonusEvidencia;
     }
 
-
     // Getters e Setters — atributos base
     public int getFurtividade()  { return furtividade; }
     public int getInteligencia() { return inteligencia; }
