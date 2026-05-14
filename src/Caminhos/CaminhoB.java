@@ -83,8 +83,6 @@ public class CaminhoB {
                         A perícia técnica da Vertex vai analisá-los.""",
                 "Aguardando Perícia", JOptionPane.PLAIN_MESSAGE);
 
-            Finais.Finais.gameOverFraude();
-
         if (sorte < chanceFraude) {
             // Fraude descoberta
             JOptionPane.showMessageDialog(null,

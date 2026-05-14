@@ -18,10 +18,23 @@ public abstract class Personagem {
     public abstract void agir();
 
     // Get/Set
+    public int getVida() {return pontosDeVida;}
     public String getNome() { return nome; }
     public int getPontosDeVida() { return pontosDeVida; }
     public int getReputacao() { return reputacao; }
 
     public void setPontosDeVida(int pv) { this.pontosDeVida = pv; }
     public void setReputacao(int rep) { this.reputacao = rep; }
+
+    public boolean receberDano(int dano) {
+        if (dano <= 0) return false;
+        pontosDeVida = Math.max(0, pontosDeVida - dano);
+        return pontosDeVida == 0;
+    }
+
+    public void curar(int quantidade) {
+        if (quantidade <= 0) return;
+        pontosDeVida = Math.min(100, pontosDeVida + quantidade);
+    }
+
 }

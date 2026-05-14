@@ -10,8 +10,6 @@ public class Membro extends Personagem {
     private boolean temProvasFalsas;
     private boolean foiPreso;
 
-    private int vida;
-
     // Bônus de itens
     private int bonusFurtividade;
     private int bonusInteligencia;
@@ -29,7 +27,6 @@ public class Membro extends Personagem {
         this.temProvasReais  = false;
         this.temProvasFalsas = false;
         this.foiPreso        = false;
-        this.vida            = 100;
         this.furtividade     = 0;
         this.inteligencia    = 0;
         this.argumentacao    = 0;
@@ -47,22 +44,6 @@ public class Membro extends Personagem {
                 "Ação", JOptionPane.PLAIN_MESSAGE);
     }
 
-    // Vida
-    public boolean receberDano(int dano) {
-        this.vida -= dano;
-        if (this.vida <= 0) {
-            this.vida = 0;
-            return true; // morreu
-        }
-        return false;
-    }
-
-    public void curar(int quantidade) {
-        this.vida = Math.min(100, this.vida + quantidade);
-    }
-
-    public int getVida() { return vida; }
-
     // Redutores de atributo base
     public void reduzirFurtividade(int valor) {
         this.furtividade = Math.max(0, this.furtividade - valor);
@@ -79,7 +60,7 @@ public class Membro extends Personagem {
     // Status exibido nas caixinhas
     public String getStatus() {
         return " " + getNome() +
-                "\n Vida: " + vida + "/100" +
+                "\n Vida: " + getVida() + "/100" +
                 "\n Reputação: " + getReputacao() +
                 "\n\n Atributos base:" +
                 "\n  Furtividade:  " + furtividade +
@@ -91,6 +72,7 @@ public class Membro extends Personagem {
                 "\n  Argumentação: +" + bonusArgumentacao +
                 "\n  Evidência:    +" + bonusEvidencia;
     }
+
 
     // Getters e Setters — atributos base
     public int getFurtividade()  { return furtividade; }
