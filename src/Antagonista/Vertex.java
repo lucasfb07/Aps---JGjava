@@ -1,9 +1,8 @@
 package Antagonista;
-
+// (Classe Final) Vertex não pode ser estendida por nenhuma outra classe
 public final class Vertex {
 
-    // Atributo Estático
-
+    // (Atributo Estático/Atributo Final) Pertence à classe, não a instâncias
     private final int nivelSeguranca;
 
     // METODO CONSTRUTOR

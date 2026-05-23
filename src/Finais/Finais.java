@@ -7,7 +7,7 @@ import Personagem.Membro;
 import Jogo.Inventario;
 
 public class Finais {
-
+    //Encapsulamento - atributo privado
     private static Membro jogador;
 
     // CAMINHO A1 — tem provas reais
@@ -75,8 +75,9 @@ public class Finais {
             gameOverFraude();
         }
     }
-
+    //Metodo publico, acesso e armazena quem quiser
     public static void finalBom(Membro jogador) {
+        //Atributo estatico
         Finais.jogador = jogador;
         JOptionPane.showMessageDialog(null,
                 """

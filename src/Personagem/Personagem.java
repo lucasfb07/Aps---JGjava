@@ -14,7 +14,7 @@ public abstract class Personagem {
         this.reputacao = reputacao;
     }
 
-    // Método Abstrato Cada Personagem agr é diferente
+    // Método Abstrato Cada Personagem agora é diferente
     public abstract void agir();
 
     // Get/Set

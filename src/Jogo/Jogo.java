@@ -14,28 +14,33 @@ public class Jogo {
     public Jogo() {
         this.inventario = new Inventario();
     }
-
+    //metodo estatico - pode ser chamado sem instanciar o jogo
     public static void exibirStatusOpcional(Membro jogador, Inventario inventario) {
 
         String[] opcoes = {"Continuar", "Ver meu status"};
-        int escolha = JOptionPane.showOptionDialog(null,
-                "Deseja continuar ou verificar seu status antes de prosseguir?",
-                "Pausa",
-                JOptionPane.DEFAULT_OPTION,
-                JOptionPane.PLAIN_MESSAGE,
-                null, opcoes, opcoes[0]);
-
-        if (escolha == 1) {
-            JOptionPane.showMessageDialog(null,
-                    "STATUS ATUAL\n\n" +
+        while(true) {
+            int escolha = JOptionPane.showOptionDialog(
+                    null,"Deseja continuar ou verificar seu status antes de prosseguir?",
+                    "Pausa",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.PLAIN_MESSAGE,
+                    null,
+                    opcoes,
+                    opcoes[0]
+            );
+            if (escolha != 1) {
+                return;
+            }
+            JOptionPane.showMessageDialog(
+                    null,"status atual\n\n" +
                             jogador.getStatus() +
-                            "\n\nInventário:\n" + inventario.listarItens(),
-                    "Status do Personagem", JOptionPane.PLAIN_MESSAGE);
-
-            exibirStatusOpcional(jogador, inventario);
+                            "\n\nInventario:\n" + inventario.listarItens(),
+                            "Status personagem",
+                            JOptionPane.PLAIN_MESSAGE
+            );
         }
     }
-
+    //metodo instacia - coordena logica narrativa
     public void iniciar() {
 
         String[] botaoStart = {"START"};
@@ -58,6 +63,7 @@ public class Jogo {
             System.exit(0);
         }
         if (nome.trim().isEmpty()) nome = "Ativista";
+        //Polimorfismo de classe - subtipo de personagem
         Membro jogador = new Membro(nome);
 
         JOptionPane.showMessageDialog(null,
@@ -113,7 +119,7 @@ public class Jogo {
                         
                         Cada escolha terá consequências.""",
                 "Sua Decisão", JOptionPane.WARNING_MESSAGE);
-
+        //instancia da classe final vertex
         Vertex vertex = new Vertex();
 
         String[] caminhos = {"Invasão Física", "Fraude Digital"};

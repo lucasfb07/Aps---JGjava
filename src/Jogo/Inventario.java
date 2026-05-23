@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public class Inventario {
 
     // (Atributo Estático Final)
+    // Acessivel sem instanciar inventario e imutavel durante a execução do programa
     public static final String RADIO_COMUNICADOR = "Rádio Comunicador";
     public static final String CREDENCIAL_FALSA  = "Credencial Falsa";
     public static final String PENDRIVE_HACKER   = "Pendrive Hacker";
@@ -18,7 +19,7 @@ public class Inventario {
     // (Encapsulamento)
     private ArrayList<String> itens;
 
-    // Método Construtor
+    // Metodo construtor - inicializa o inventario
     public Inventario() {
         this.itens = new ArrayList<>();
     }
@@ -62,7 +63,7 @@ public class Inventario {
             case KIT_MEDICO:
                 // Kit Médico não dá bônus — é usado via AcaoItem
                 descricao = "Kit de primeiros socorros preparado pela ONG.";
-                efeito    = "Use antes de escolhas importantes para recuperar 30 de vida.";
+                efeito    = "Use antes de escolhas importantes para recuperar 40 de vida.";
                 break;
 
             case RELATORIO_REAL:

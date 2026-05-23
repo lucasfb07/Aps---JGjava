@@ -8,7 +8,7 @@ import Personagem.Membro;
 import Jogo.Inventario;
 
 public class CaminhoA {
-
+    //Metodo estatico/Encapsulamento interno
     public static void executar(Membro jogador, Inventario inventario, int bonusVertex) {
 
         boolean possuiRadio = false;
@@ -68,7 +68,7 @@ public class CaminhoA {
 
         escolherEntrada(jogador, inventario, possuiRadio, bonusVertex);
     }
-
+    //Metodo estatico/encapsulamento interno
     private static void escolherEntrada(Membro jogador, Inventario inventario, boolean possuiRadio, int bonusVertex) {
 
         Jogo.exibirStatusOpcional(jogador, inventario);
@@ -147,6 +147,7 @@ public class CaminhoA {
         }
 
         if (entrou) {
+            //Encadeamento para proxima etapa
             corredorSeguranca(jogador, inventario, possuiRadio);
         } else {
             fracassoNaInvasao(jogador, inventario,
@@ -156,7 +157,7 @@ public class CaminhoA {
                             O alarme foi acionado antes que você conseguisse entrar no prédio.""");
         }
     }
-
+    //Metodo estatico/encapsulamento interno - logica do corredor interno
     private static void corredorSeguranca(Membro jogador, Inventario inventario, boolean possuiRadio) {
 
         JOptionPane.showMessageDialog(null,
@@ -254,7 +255,7 @@ public class CaminhoA {
                             Antes que você pudesse fugir, a Vertex acionou o protocolo de emergência.""");
         }
     }
-
+    //Metodo estatico/encapsulamento - etapa da invasão final
     private static void salaServidores(Membro jogador, Inventario inventario, boolean possuiRadio) {
 
         JOptionPane.showMessageDialog(null,
@@ -343,7 +344,7 @@ public class CaminhoA {
                             O sistema bloqueou os arquivos e acionou a segurança.""");
         }
     }
-
+    //Metodo estatico/encapsulamento - desfecho positivo encapsulado
     private static void sucessoNaInvasao(Membro jogador, Inventario inventario) {
 
         JOptionPane.showMessageDialog(null,
@@ -373,7 +374,7 @@ public class CaminhoA {
 
         Finais.Finais.caminhoA1(jogador, inventario);
     }
-
+    //Metodo estatico/encapsulamento interno - desfecho negativo
     private static void fracassoNaInvasao(Membro jogador, Inventario inventario, String motivo) {
 
         JOptionPane.showMessageDialog(null,

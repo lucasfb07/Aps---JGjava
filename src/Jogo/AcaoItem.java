@@ -5,8 +5,9 @@ import Personagem.Membro;
 
 
 public class AcaoItem {
-
+    //Metodo estatico e encapsulamento
     public static void oferecerUsoKitMedico(Membro Jogador, Inventario inventario) {
+        //Verificação de guarda: evita o uso desnecessario
         if (!inventario.temItem(Inventario.KIT_MEDICO)) {
             return;
         }
@@ -29,6 +30,7 @@ public class AcaoItem {
                 opcoes[0]);
 
         if (escolha == 0) {
+            //encapsulamento - logica de penalidade
             boolean penalidadeAplicada = escolherPenalidade(Jogador);
 
             if (!penalidadeAplicada) {
@@ -51,7 +53,7 @@ public class AcaoItem {
                     JOptionPane.PLAIN_MESSAGE);
         }
     }
-
+    //Metodo estatico - acessado somente na propria classe
     private static boolean escolherPenalidade(Membro jogador) {
 
         String[] atributos = {"Furtividade", "Inteligência", "Argumentação"};
